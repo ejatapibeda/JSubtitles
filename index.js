@@ -34,7 +34,7 @@ builder.defineSubtitlesHandler(async ({ type, id, extra }) => {
           if (source.name === "Filemoon" && source.data.subtitle) {
             subtitles = source.data.subtitle.map((sub) => ({
               url: sub.file,
-              lang: `JSub ${sub.lang}`,
+              lang: sub.lang,
             }));
             break;
           }
@@ -44,7 +44,7 @@ builder.defineSubtitlesHandler(async ({ type, id, extra }) => {
             if (source.name === "Vidplay" && source.data.subtitle) {
               subtitles = source.data.subtitle.map((sub) => ({
                 url: sub.file,
-                lang: `JSub ${sub.lang}`,
+                lang: sub.lang,
               }));
               break;
             }
@@ -74,11 +74,13 @@ builder.defineSubtitlesHandler(async ({ type, id, extra }) => {
       if (data.status === 200) {
         const sources = data.sources;
         let subtitles = [];
+
+        // Cek setiap sumber
         for (const source of sources) {
           if (source.name === "Filemoon" && source.data.subtitle) {
             subtitles = source.data.subtitle.map((sub) => ({
               url: sub.file,
-              lang: `JSub ${sub.lang}`,
+              lang: sub.lang,
             }));
             break;
           }
@@ -89,7 +91,7 @@ builder.defineSubtitlesHandler(async ({ type, id, extra }) => {
             if (source.name === "Vidplay" && source.data.subtitle) {
               subtitles = source.data.subtitle.map((sub) => ({
                 url: sub.file,
-                lang: `JSub ${sub.lang}`,
+                lang: sub.lang,
               }));
               break;
             }
