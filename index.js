@@ -19,6 +19,53 @@ const manifest = {
 
 const builder = new addonBuilder(manifest);
 
+function getLangCode(lang) {
+  const langMap = {
+    Abkhazian: "ab",
+    Arabic: "ar",
+    Bengali: "bn",
+    "Brazillian Portuguese": "pt-BR",
+    Bulgarian: "bg",
+    "Chinese (BG code)": "zh",
+    "Chinese (Bilingual)": "zh",
+    Croatian: "hr",
+    Czech: "cs",
+    Danish: "da",
+    Dutch: "nl",
+    English: "en",
+    Estonian: "et",
+    "Farsi/Persian": "fa",
+    Finnish: "fi",
+    French: "fr",
+    German: "de",
+    Greek: "el",
+    Hebrew: "he",
+    Hungarian: "hu",
+    Indonesian: "id",
+    Italian: "it",
+    Japanese: "ja",
+    Korean: "ko",
+    Malay: "ms",
+    Norwegian: "no",
+    Persian: "fa",
+    Polish: "pl",
+    Portuguese: "pt",
+    Romanian: "ro",
+    Russian: "ru",
+    Serbian: "sr",
+    Sinhalese: "si",
+    Slovenian: "sl",
+    "Spanish (LA)": "es",
+    Spanish: "es",
+    Swedish: "sv",
+    Thai: "th",
+    Turkish: "tr",
+    Urdu: "ur",
+    Vietnamese: "vi",
+  };
+  return langMap[lang] || lang;
+}
+
 builder.defineSubtitlesHandler(async ({ type, id, extra }) => {
   if (type === "movie" && id.startsWith("tt")) {
     try {
@@ -33,8 +80,9 @@ builder.defineSubtitlesHandler(async ({ type, id, extra }) => {
         for (const source of sources) {
           if (source.name === "Filemoon" && source.data.subtitle) {
             subtitles = source.data.subtitle.map((sub) => ({
+              id: sub.lang,
               url: sub.file,
-              lang: sub.lang,
+              lang: getLangCode(sub.lang),
             }));
             break;
           }
@@ -43,8 +91,9 @@ builder.defineSubtitlesHandler(async ({ type, id, extra }) => {
           for (const source of sources) {
             if (source.name === "Vidplay" && source.data.subtitle) {
               subtitles = source.data.subtitle.map((sub) => ({
+                id: sub.lang,
                 url: sub.file,
-                lang: sub.lang,
+                lang: getLangCode(sub.lang),
               }));
               break;
             }
@@ -79,8 +128,9 @@ builder.defineSubtitlesHandler(async ({ type, id, extra }) => {
         for (const source of sources) {
           if (source.name === "Filemoon" && source.data.subtitle) {
             subtitles = source.data.subtitle.map((sub) => ({
+              id: sub.lang,
               url: sub.file,
-              lang: sub.lang,
+              lang: getLangCode(sub.lang),
             }));
             break;
           }
@@ -90,8 +140,9 @@ builder.defineSubtitlesHandler(async ({ type, id, extra }) => {
           for (const source of sources) {
             if (source.name === "Vidplay" && source.data.subtitle) {
               subtitles = source.data.subtitle.map((sub) => ({
+                id: sub.lang,
                 url: sub.file,
-                lang: sub.lang,
+                lang: getLangCode(sub.lang),
               }));
               break;
             }
